@@ -6,7 +6,6 @@ from middlewares.isAdmin import isAdmin
 
 
 class Home(Resource):
-    @checkJwtTokenMiddleware
     def get(self):
         home = HomePage.objects.get().to_json()
         response = make_response(home)

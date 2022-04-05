@@ -17,7 +17,7 @@ def checkJwtTokenMiddleware(func):
                 algorithms=[current_app.config["JWT_ALGORITHM"]],
             )    
             
-            g.user = decoded
+            g.loginedUser = decoded
             g.response = make_response()
             g.response.set_cookie(
                 key="access-token",

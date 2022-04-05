@@ -9,15 +9,13 @@ def isAdmin(func):
     def decorated_function(*args, **kwargs):
         jwtAccessToken = request.cookies.get("access-token")
 
-        decodedJwtAccessToken = jwt.decode(
+        decoded = jwt.decode(
             jwtAccessToken,
             current_app.config["JWT_SECRET_KEY"],
             algorithms=[current_app.config["JWT_ALGORITHM"]],
         )
 
-        user = User.objects.get(username=decodedJwtAccessToken["username"])
-
-        if not user["isAdmin"]:
+        if not decoded["isAdmin"]:
             abort(403)
 
         return func(*args, **kwargs)

@@ -1,6 +1,6 @@
 from controllers.auth import Login, Logout, Check, Register
 from controllers.home import Home
-
+from controllers.posts import PostList
 
 def addResource(api):
     # Authentication Routing
@@ -10,3 +10,5 @@ def addResource(api):
     api.add_resource(Register, "/auth/register")
 
     api.add_resource(Home, "/home")
+
+    api.add_resource(PostList, "/posts")

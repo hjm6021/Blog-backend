@@ -1,9 +1,8 @@
 from flask import abort, make_response, request, current_app, g
 from flask_restful import Resource
 from lib import authAPI
-import jwt
+import jwt, bcrypt, json
 from models import User
-import bcrypt
 from middlewares.checkJwtToken import checkJwtTokenMiddleware
 
 salt = bcrypt.gensalt(rounds=10, prefix=b'2a')
@@ -35,7 +34,7 @@ class Login(Resource):
 
         # Generate JWT Token and Set cookies with JWT Token
         del user.password
-        import json
+
         jwtToken = generateJwtToken(json.loads(user.to_json()))
 
         response = make_response(user.to_json())
@@ -60,16 +59,16 @@ class Register(Resource):
 
         user = User.objects(username=username).first()
         if user:
+            abort(409)
+        try:
+            user = User()    
+            user.username = username
             user.password = bcrypt.hashpw(password.encode(), salt).decode('utf-8')
-            user.save()
-            return "Successfully Updated", 200
+            user.save()  
+        except:
+            abort(500)
 
-        user = User()    
-        user.username = username
-        user.password = bcrypt.hashpw(password.encode(), salt).decode('utf-8')
-        user.save()  
-
-        return "Successfully Registered", 200
+        return "Registered Sucessfully", 200
 
 class Logout(Resource):
     def post(self):
@@ -82,5 +81,5 @@ class Logout(Resource):
 class Check(Resource):
     @checkJwtTokenMiddleware
     def get(self):
-        g.response = g.user
+        g.response = g.loginedUser
         return g.response
