@@ -2,8 +2,12 @@ from flask_restful import Resource
 from flask import send_file, current_app, request, make_response, abort
 import os
 from datetime import datetime
+from middlewares.checkJwtToken import checkJwtTokenMiddleware
+from middlewares.isAdmin import isAdmin
 
 class UploadImage(Resource):
+    @checkJwtTokenMiddleware
+    @isAdmin
     def post(self):
         if not request.files['file']:
             abort(400)

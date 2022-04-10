@@ -2,6 +2,7 @@ from controllers.auth import Login, Logout, Check, Register
 from controllers.home import HomePage
 from controllers.posts import PostDetail, Posts, Tags
 from controllers.image import UploadImage, GetImage
+from controllers.about import AboutPage
 
 def addResource(api):
     # Authentication Routing
@@ -11,6 +12,7 @@ def addResource(api):
     api.add_resource(Register, "/auth/register")
 
     api.add_resource(HomePage, "/home")
+    api.add_resource(AboutPage, "/about")
 
     api.add_resource(Posts, "/posts")
     api.add_resource(Tags, "/tags")
