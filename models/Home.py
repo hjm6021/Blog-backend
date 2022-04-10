@@ -1,7 +1,7 @@
 from mongoengine import *
 
 
-class HomePage(Document):
+class Home(Document):
     description = StringField(required=True)
 
     meta = {"collection": "home"}

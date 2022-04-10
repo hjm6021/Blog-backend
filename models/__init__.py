@@ -1,3 +1,4 @@
-from .Users import User
-from .HomePage import HomePage
-from .Posts import Posts
+from .User import User
+from .Home import Home
+from .Post import Post
+from .About import About

@@ -5,10 +5,13 @@ import config
 from urls import addResource
 from flask_cors import CORS
 from flasgger import Swagger
+import os
 
 app = Flask(__name__)
+
 app.config.from_object(config)
 
+os.makedirs(app.config["UPLOADED_IMAGE_FOLDER"], exist_ok=True)
 app.config["SWAGGER"] = app.config["FLASGGER_SETTING"]
 
 # hanlde CORS error. supports_credentials=True for Cookies

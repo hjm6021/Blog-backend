@@ -1,5 +1,5 @@
 # BLAS API Configuration
-BLAS_URL = "https://www.basis-service.com/blas777/api/v1/auth/login/"
+URL = "http://localhost:5000/"
 
 # MongoDB Connection Configuration
 MONGODB = "blog"
@@ -29,3 +29,5 @@ FLASGGER_SETTING = {
     "uiversion": 3,
     "specs_route": "/docs/",
 }
+
+UPLOADED_IMAGE_FOLDER = "./uploaded"
