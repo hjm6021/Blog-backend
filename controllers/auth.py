@@ -1,6 +1,5 @@
 from flask import abort, make_response, request, current_app, g
 from flask_restful import Resource
-from lib import authAPI
 import jwt, bcrypt, json
 from models import User
 from middlewares.checkJwtToken import checkJwtTokenMiddleware
