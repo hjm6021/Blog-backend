@@ -1,5 +1,5 @@
 # BLAS API Configuration
-URL = "http://localhost:5000/"
+URL = "http://www.jmhan-blog.com/api/"
 
 # MongoDB Connection Configuration
 MONGODB = "blog"
